@@ -5,10 +5,20 @@ import api from "./services/api";
 
 function App() {
   const [user, setUser] = useState();
+
+  useEffect(() => {
+    api
+      .get("/1")
+      .then((response) => setUser(response.data))
+      .catch((err) => {
+        console.error("ops! ocorreu um erro" + err);
+      });
+  }, []);
+
   return (
     <div className="App">
-      <p>Usuário: {user?.login}</p>
-      <p>Biografia: {user?.bio}</p>
+      {console.log(user)}
+      <p></p>
     </div>
   );
 }
